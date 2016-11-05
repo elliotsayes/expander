@@ -15,10 +15,10 @@ def path_check():
 def expand_byte(byte_in, ratio):
     try:
         bytes_out = bytearray(ratio)
+        bytes_out[:-1] = os.urandom(ratio-1)
     except (MemoryError,OverflowError):
         print("Expansion ratio is too big to handle. Exiting")
         exit()
-    bytes_out[:-1] = os.urandom(ratio-1)
 
     byte_sum = 0
     for b in bytes_out:
